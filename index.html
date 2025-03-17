@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <script>
+        function openAppOrRedirect(appSchema, appStoreUrl, fallbackUrl) {
+            var startTime = Date.now();
+            var iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = appSchema;
+            document.body.appendChild(iframe);
+
+            var timer = setTimeout(function () {
+                if (Date.now() - startTime > 2000) {
+                    window.location.replace(appStoreUrl || fallbackUrl);
+                }
+                document.body.removeChild(iframe);
+            }, 1500);
+
+            window.addEventListener("blur", function () {
+                clearTimeout(timer);
+            });
+        }
+    </script>
 </head>
 <body>
-  <p>Hello, World!</p>
+    <p>Hello, World!</p>
+    <button onclick="openAppOrRedirect('com.dnx.japan.ui.bank://', 'https://apps.apple.com/app/com.dnx.japan.ui.bank', 'https://yourwebsite.com/fallback')">앱 열기/설치</button>
 </body>
 </html>
