@@ -18,16 +18,12 @@
                 iframe.src = appSchema;
                 document.body.appendChild(iframe);
 
-                var timer = setTimeout(function () {
-                    if (Date.now() - startTime > 2000) {
+                setTimeout(function () {
+                    document.body.removeChild(iframe);
+                    if (Date.now() - startTime < 2000) {
                         window.location.replace(appStoreUrl || fallbackUrl);
                     }
-                    document.body.removeChild(iframe);
                 }, 1500);
-
-                window.addEventListener("blur", function () {
-                    clearTimeout(timer);
-                });
             } else {
                 // iOS 기기가 아닌 경우 앱 스토어 URL로 리디렉션
                 window.location.replace(appStoreUrl);
@@ -40,7 +36,7 @@
     </script>
 </head>
 <body>
-    <p>Hello, World!3</p>
+    <p>Hello, World!4</p>
     <button onclick="openAppOrRedirect('kakaotalk://', 'https://apps.apple.com/kr/app/kakaotalk/id362057947', 'https://yourwebsite.com/fallback')">카카오톡 열기/설치</button>
     <button onclick="goToAppStore('https://apps.apple.com/kr/app/kakaotalk/id362057947')">스토어로 이동</button>
 </body>
