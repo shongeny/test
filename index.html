@@ -6,55 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <script>
-		function openAppOrRedirect(appSchema, appStoreUrl, fallbackUrl) {
-			if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-				// iOS 기기인 경우 앱 스키마 호출
-				var startTime = Date.now();
-				var iframe = document.createElement("iframe");
-				iframe.style.display = "none";
-				iframe.src = appSchema;
-				document.body.appendChild(iframe);
+        function openAppOrRedirect(appSchema, appStoreUrl, fallbackUrl) {
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+                // iOS 기기인 경우 앱 스키마 호출
+                var startTime = Date.now();
+                window.location = appSchema; // iframe 대신 window.location 사용
 
-				var timer = setTimeout(function () {
-					if (Date.now() - startTime > 2000) {
-						window.location.replace(appStoreUrl || fallbackUrl);
-					}
-					document.body.removeChild(iframe);
-				}, 1500);
+                var timer = setTimeout(function () {
+                    if (Date.now() - startTime > 2000) {
+                        window.location.replace(appStoreUrl || fallbackUrl);
+                    }
+                }, 1500);
 
-				window.addEventListener("blur", function () {
-					clearTimeout(timer);
-				});
-			} else {
-				// iOS 기기가 아닌 경우 앱 스토어 URL로 리디렉션
-				window.location.replace(appStoreUrl);
-			}
-		}
-
-        // function openAppOrRedirect(appSchema, appStoreUrl, fallbackUrl) {
-        //     var startTime = Date.now();
-        //     var iframe = document.createElement("iframe");
-        //     iframe.style.display = "none";
-        //     iframe.src = appSchema;
-        //     document.body.appendChild(iframe);
-
-        //     var timer = setTimeout(function () {
-        //         if (Date.now() - startTime > 2000) {
-        //             window.location.replace(appStoreUrl || fallbackUrl);
-        //         }
-        //         document.body.removeChild(iframe);
-        //     }, 1500);
-
-        //     window.addEventListener("blur", function () {
-        //         clearTimeout(timer);
-        //     });
-        // }
+                window.addEventListener("blur", function () {
+                    clearTimeout(timer);
+                });
+            } else {
+                // iOS 기기가 아닌 경우 앱 스토어 URL로 리디렉션
+                window.location.replace(appStoreUrl);
+            }
+        }
     </script>
 </head>
 <body>
     <p>Hello, World!1</p>
-    <!-- <button onclick="openAppOrRedirect('com.dnx.japan.ui.bank://', 'https://apps.apple.com/app/com.dnx.japan.ui.bank', 'https://yourwebsite.com/fallback')">앱 열기/설치</button> -->
-	<button onclick="openAppOrRedirect('com.dnx.japan.ui.bank://', 'https://apps.apple.com/kr/app/kakaotalk/id362057947', 'https://yourwebsite.com/fallback')">앱 열기/설치</button>
-
+    <button onclick="openAppOrRedirect('kakaotalk://', 'https://apps.apple.com/kr/app/kakaotalk/id362057947', 'https://yourwebsite.com/fallback')">카카오톡 열기/설치</button>
 </body>
 </html>
