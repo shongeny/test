@@ -65,6 +65,7 @@
                 
                 document.addEventListener("visibilitychange", handleVisibilityChange);
                 
+                // 앱 실행 시도
                 window.location.href = appSchema;
                 
                 setTimeout(function () {
@@ -93,7 +94,7 @@
     </script>
 </head>
 <body>
-    <p>Hello, World!14</p>
+    <p>Hello, World!  15</p>
     <button onclick="openAppOrRedirect('kakaotalk://', 'https://apps.apple.com/kr/app/kakaotalk/id362057947', 'https://yourwebsite.com/fallback')">카카오톡 열기/설치</button>
     <button onclick="goToAppStore('https://apps.apple.com/kr/app/kakaotalk/id362057947')">스토어로 이동</button>
 </body>
